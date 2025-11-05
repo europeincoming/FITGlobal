@@ -22,11 +22,17 @@ async function loadPackages() {
 // Determine page depth for correct relative paths
 function getPageDepth() {
     const path = window.location.pathname;
-    const depth = (path.match(/\//g) || []).length - 2; // Subtract 2 for base path
     
-    if (depth <= 1) return './';
-    if (depth === 2) return '../';
-    if (depth === 3) return '../../';
+    // Count slashes after /FITGlobal/
+    const fitGlobalIndex = path.indexOf('/FITGlobal/');
+    if (fitGlobalIndex === -1) return './';
+    
+    const afterFitGlobal = path.substring(fitGlobalIndex + '/FITGlobal/'.length);
+    const depth = (afterFitGlobal.match(/\//g) || []).length;
+    
+    if (depth === 0) return './';
+    if (depth === 1) return '../';
+    if (depth === 2) return '../../';
     return '../../../';
 }
 
