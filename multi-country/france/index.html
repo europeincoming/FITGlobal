@@ -176,14 +176,17 @@
 </head>
 <body>
     <body>
-    <!-- Geo-blocking Script - Blocks access from India -->
+    <!-- Geo-blocking Script - Blocks access from India and GCC countries -->
     <script>
     (async function() {
         try {
             const response = await fetch('https://ipapi.co/json/');
             const data = await response.json();
             
-            if (data.country_code === 'IN') {
+            // Block these countries
+            const blockedCountries = ['IN', 'AE', 'QA', 'OM', 'SA', 'KW', 'LK', 'BD'];
+            
+            if (blockedCountries.includes(data.country_code)) {
                 document.body.innerHTML = `
                     <div style="
                         display: flex;
@@ -212,8 +215,6 @@
         }
     })();
     </script>
-    
-    <!-- Fixed Top Navigation -->
     <!-- Fixed Top Navigation -->
     <nav class="top-nav">
         <div class="nav-container">
