@@ -269,7 +269,7 @@
         const data = await response.json();
         
         // Block these countries
-        const blockedCountries = ['IN', 'AE', 'QA', 'OM', 'SA', 'KW', 'LK', 'BD', 'PH', 'ID', 'TW', 'KR'];
+        const blockedCountries = ['IN', 'AE', 'QA', 'BH', 'OM', 'SA', 'KW', 'LK', 'BD', 'PH', 'ID', 'TW', 'KR', 'PT', 'ES', 'IT', 'FR', 'BR', 'AR', 'MX', 'PE', 'CL', 'UY'];
         
         if (blockedCountries.includes(data.country)) {
             document.body.innerHTML = `
