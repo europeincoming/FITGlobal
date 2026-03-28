@@ -1,6 +1,10 @@
 """
-rebuild_site.py — FITPremium
-Same as FITStandard v10 but geo-block is ALLOWLIST (US, CA, AU, NZ only).
+rebuild_site.py — v11
+Fixes:
+- City break pricing: handles 4-column table (Single/Twin/Triple/Child)
+  with Extension night rows correctly skipped
+- City extraction: handles both "Overnight in X" and "Overnight X" patterns
+- Everything from v10 preserved
 """
 
 import os, re, json, urllib.request, urllib.parse, time
@@ -85,10 +89,9 @@ COMPOUND_NAMES = {
     'Venice Mestre', 'Isle of Skye', 'Lake District', 'Stratford upon Avon',
 }
 
-# ── KEY DIFFERENCE: ALLOWLIST (only US, CA, AU, NZ get in) ───────────────────
 GEO_BLOCK = """<script>
 (async function(){try{const r=await fetch('https://api.country.is/');const d=await r.json();
-if(!['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#f5f5f5;text-align:center"><h1 style="font-size:48px">🌍</h1><h2>Service Not Available</h2><p style="color:#757575">Visit <a href="https://www.europeincoming.com" style="color:#2196F3;text-decoration:none;">www.europeincoming.com</a></p></div>';}
+if(!['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;background:#f5f5f5;text-align:center"><h1 style="font-size:48px">🌍</h1><h2>Service Not Available</h2><p style="color:#757575">This site is not available in your region.</p></div>';}
 }catch(e){}}
 )();</script>"""
 
@@ -264,7 +267,7 @@ def make_title(filename):
     rest = re.sub(r'\d{4}-\d{2,4}', '', rest)
     rest = re.sub(r'Europe\s+Incoming', '', rest, flags=re.IGNORECASE)
     rest = re.sub(r'\s+', ' ', rest).strip().strip('-').strip()
-    rest = re.sub(r'\s*&\s*', ' ', rest).strip()  # remove existing & before rejoining
+    rest = re.sub(r'\s*&\s*', ' ', rest).strip()
     return f"{duration} {smart_destination(rest.split())}".strip()
 
 
@@ -294,24 +297,67 @@ def detect_seasons(date_pairs):
     return "all-year"
 
 def extract_price(txt, lines):
+    """
+    Detect currency and extract lowest starting twin price.
+    Handles three table formats:
+    1. Private: Min Pax table
+    2. Regular/Self Drive: Single/Twin/Child (3 cols)
+    3. City Break: Single/Twin/Triple/Child (4 cols) with Extension night rows
+    """
     currency = "£" if ("£" in txt and "€" not in txt) else "€"
     amt_pattern = r'[€£]\s*([\d,]+)'
+
+    # Private — Min Pax table
     if re.search(r'Min\s*Pax', txt, re.IGNORECASE):
-        section = re.search(r'Min\s*Pax.*?(?:Sample Hotels|Terms)', txt, re.DOTALL|re.IGNORECASE)
+        section = re.search(r'Min\s*Pax.*?(?:Sample Hotels|Terms|Hotels\b)', txt, re.DOTALL|re.IGNORECASE)
         if section:
             amounts = re.findall(amt_pattern, section.group(0))
             prices = [int(a.replace(',', '')) for a in amounts if int(a.replace(',', '')) > 500]
             return (min(prices), currency) if prices else (None, currency)
         return (None, currency)
+
     ti = next((i for i, l in enumerate(lines) if 'Twin' in l and 'Do' in l), None)
-    if ti:
-        ep = []
-        for l in lines[ti:ti + 30]:
-            m = re.match(amt_pattern, l)
-            if m: ep.append(int(m.group(1).replace(',', '')))
+    if not ti:
+        return (None, currency)
+
+    # Detect if table has Triple column (city break format)
+    has_triple = any('Triple' in l for l in lines[max(0, ti-3):ti+3])
+
+    ep = []
+    skip_count = 0
+    for l in lines[ti:ti + 50]:
+        if re.search(r'Extension', l, re.IGNORECASE):
+            # Skip the next N price values for this extension row
+            skip_count = 4 if has_triple else 3
+            continue
+        m = re.match(amt_pattern, l)
+        if m:
+            if skip_count > 0:
+                skip_count -= 1
+                continue
+            ep.append(int(m.group(1).replace(',', '')))
+
+    if has_triple:
+        # 4 cols: Single=0, Twin=1, Triple=2, Child=3
+        twins = ep[1::4] if len(ep) >= 4 else []
+    else:
+        # 3 cols: Single=0, Twin=1, Child=2
         twins = ep[1::3] if len(ep) >= 3 else ep[1:2] if len(ep) >= 2 else []
-        return (min(twins), currency) if twins else (None, currency)
-    return (None, currency)
+
+    return (min(twins), currency) if twins else (None, currency)
+
+def extract_cities(txt):
+    """
+    Extract overnight cities. Handles:
+    - "Overnight in Amsterdam"  (multi-country style)
+    - "Overnight Amsterdam"     (city break style)
+    """
+    # Try "Overnight in X" first
+    cities = re.findall(r'Overnight in ([A-Z][a-zA-Z\s]+?)[\.\n,]', txt)
+    if not cities:
+        # Fall back to "Overnight X"
+        cities = re.findall(r'Overnight\s+([A-Z][a-zA-Z]+)', txt)
+    return list(dict.fromkeys([c.strip() for c in cities]))[:6]
 
 def extract_pdf_data(pdf_path, filename):
     r = {
@@ -321,18 +367,21 @@ def extract_pdf_data(pdf_path, filename):
     }
     name = filename.replace('_', ' ')
     dur = re.search(r'(\d+)\s*nights?\s*/?,?\s*(\d+)\s*days?', name, re.IGNORECASE)
-    if dur: r["duration"] = f"{dur.group(1)} nights / {dur.group(2)} days"
+    if dur:
+        r["duration"] = f"{dur.group(1)} nights / {dur.group(2)} days"
     else:
         d = re.search(r'(\d+)\s*days?', name, re.IGNORECASE)
         if d: r["duration"] = f"{d.group(1)} days"
     t = re.search(r'(Self.?[Dd]rive|Private|Regular)', name)
     if t: r["tour_type"] = t.group(1).replace('-', ' ').title()
+
     try:
         doc = fitz.open(pdf_path)
         txt = "\n".join(p.get_text() for p in doc)
         lines = [l.strip() for l in txt.split('\n')]
-        oc = re.findall(r'Overnight in ([A-Z][a-zA-Z\s]+?)[\.\n,]', txt)
-        r["cities"] = list(dict.fromkeys([c.strip() for c in oc]))[:6]
+
+        r["cities"] = extract_cities(txt)
+
         all_dates_raw = re.findall(r'\b(\d{2}[./]\d{2}[./]\d{2,4})\b', txt)
         valid_dates = []
         for d in all_dates_raw:
@@ -346,14 +395,18 @@ def extract_pdf_data(pdf_path, filename):
             latest = max(objs)
             r["valid_till"] = latest.strftime("%b %Y")
             r["is_expired"] = latest < datetime.now()
+
         price, currency = extract_price(txt, lines)
         r["price_twin"] = price
         r["currency"] = currency
-        im = re.search(r'price includes:(.*?)(?:Sample Tours|Terms|Sample Hotels)', txt, re.DOTALL|re.IGNORECASE)
+
+        im = re.search(r'price includes:(.*?)(?:Sample Tours|Terms|Sample Hotels|Hotels\b)',
+                       txt, re.DOTALL|re.IGNORECASE)
         if im:
             il = [l.strip().lstrip('•').strip() for l in im.group(1).split('\n')
                   if l.strip() and not l.strip().startswith('**') and len(l.strip()) > 5]
             r["includes"] = il[:3]
+
     except Exception as e:
         print(f"  WARNING {filename}: {e}")
     return r
@@ -366,7 +419,7 @@ def extract_itinerary(pdf_path):
         doc = fitz.open(pdf_path)
         txt = "\n".join(p.get_text() for p in doc)
         m = re.search(
-            r'(Day\s*1\s*[,:\-\s].+?)(?:This package price includes|Sample Tours|Terms\s*[&\n]|Sample Hotels|$)',
+            r'(Day\s*1\s*[,:\-\s].+?)(?:This package price includes|Sample [Tt]ours|Terms\s*[&\n]|Sample Hotels|Hotels\b|$)',
             txt, re.DOTALL|re.IGNORECASE
         )
         if m:
@@ -389,15 +442,18 @@ def generate_description(cities, region, tour_type, season, pdf_path, cached_des
     if cached_desc and not any(m in cached_desc for m in FALLBACK_MARKERS):
         print(f"    cached: {cached_desc}")
         return cached_desc
+
     itinerary = extract_itinerary(pdf_path)
     if not GITHUB_TOKEN or not itinerary:
         return _fallback_desc(cities, region, tour_type)
+
     season_hint = ""
-    if season == "winter": season_hint = "This is a winter package. Highlight cold-weather experiences if relevant. "
+    if season == "winter": season_hint = "This is a winter package. "
     elif season == "summer": season_hint = "This is a summer/warm season package. "
+
     prompt = (
         f"Tour itinerary:\n{itinerary}\n\n"
-        f"Tour type: {tour_type or 'guided'}. {season_hint}"
+        f"Tour type: {tour_type or 'city break'}. {season_hint}"
         f"Write ONE punchy sentence (max 12 words) capturing the ESSENCE and VIBE of this specific tour. "
         f"Don't list city names. Don't say 'explore' or 'journey through'. "
         f"Be vivid and specific to what actually happens. Just the sentence, no quotes, no preamble."
@@ -408,17 +464,18 @@ def generate_description(cities, region, tour_type, season, pdf_path, cached_des
             {"role": "system", "content": (
                 "You write punchy one-sentence travel vibes capturing the soul of a tour. "
                 "Specific, sensory, evocative. Never generic. Never list city names. "
-                "Never mention the region name. Focus on what's unique about THIS itinerary. "
+                "Focus on what's unique about THIS itinerary. "
                 "Good examples: "
-                "'Cliffside drives, Bronze Age towers and Neptune's hidden sea caves.' "
-                "'D-Day beaches, Loire chateaux and Montmartre twilight strolls.' "
-                "'Thermal baths, Habsburg grandeur and Danube river evenings.' "
-                "'Northern lights hunting, reindeer safaris and Arctic silence.'"
+                "'Canal cruises, Anne Frank's hideaway and golden-hour cycling.' "
+                "'Acropolis at dawn, taverna nights and Aegean sea light.' "
+                "'Baroque palaces, thermal baths and Danube bridge views.' "
+                "'Cliffside drives, Bronze Age towers and hidden sea caves.'"
             )},
             {"role": "user", "content": prompt}
         ],
         "max_tokens": 80, "temperature": 0.9
     }).encode()
+
     try:
         req = urllib.request.Request(
             "https://models.inference.ai.azure.com/chat/completions",
@@ -456,11 +513,11 @@ def make_map_js(map_id, cities, coords_cache):
   if(!pts.length) return;
   var lats=pts.map(function(p){{return p[0];}});
   var lngs=pts.map(function(p){{return p[1];}});
-  var pad=0.4;
+  var pad=0.6;
   var bounds=[[Math.min.apply(null,lats)-pad,Math.min.apply(null,lngs)-pad],[Math.max.apply(null,lats)+pad,Math.max.apply(null,lngs)+pad]];
   var map=L.map('{map_id}',{{zoomControl:false,scrollWheelZoom:false,dragging:false,touchZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,attributionControl:false}});
   L.tileLayer('https://{{s}}.tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png',{{maxZoom:13}}).addTo(map);
-  map.fitBounds(bounds,{{padding:[10,10]}});
+  map.fitBounds(bounds,{{padding:[20,20]}});
   if(pts.length>1){{var ll=pts.map(function(p){{return[p[0],p[1]];}});L.polyline(ll,{{color:'#2196F3',weight:2.5,dashArray:'6,4',opacity:0.85}}).addTo(map);}}
   pts.forEach(function(p,i){{
     var color=i===0?'#e53935':(i===pts.length-1?'#43a047':'#1565c0');
@@ -481,6 +538,7 @@ def make_brochure_card(pdf_filename, pdf_data, title, description, map_id, coord
     valid_till = pdf_data.get("valid_till")
     is_expired = pdf_data.get("is_expired", False)
     is_private = tt.lower() == "private" if tt else False
+
     pills = ""
     if dur: pills += f'<span class="pill pill-duration">🕐 {dur}</span>'
     if season == "summer": pills += '<span class="pill pill-summer">☀️ Summer</span>'
@@ -489,15 +547,21 @@ def make_brochure_card(pdf_filename, pdf_data, title, description, map_id, coord
     if valid_till:
         if is_expired: pills += f'<span class="pill pill-expired">⚠️ Expired {valid_till}</span>'
         else: pills += f'<span class="pill pill-valid">✓ Valid till {valid_till}</span>'
+
     has_map = any(get_coords(c, coords_cache) for c in cities)
     map_html = f'<div class="card-map"><div id="{map_id}" class="map-inner"></div></div>' if has_map else ''
     expired_class = " expired" if is_expired else ""
+
     if price:
-        if is_expired: price_html = '<div class="price-tag" style="color:#e65100;">Check availability</div>'
-        elif is_private: price_html = f'<div class="price-tag">From {currency}{price:,} pp (group rate)</div>'
-        else: price_html = f'<div class="price-tag">From {currency}{price:,} pp (twin)</div>'
+        if is_expired:
+            price_html = '<div class="price-tag" style="color:#e65100;">Check availability</div>'
+        elif is_private:
+            price_html = f'<div class="price-tag">From {currency}{price:,} pp (group rate)</div>'
+        else:
+            price_html = f'<div class="price-tag">From {currency}{price:,} pp (twin)</div>'
     else:
         price_html = ""
+
     return f"""<a href="{pdf_filename}" class="brochure-card{expired_class}" target="_blank">
   <div class="card-info">
     <div class="card-title">{title} <span class="pdf-badge">PDF</span></div>
