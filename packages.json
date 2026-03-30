@@ -52,7 +52,7 @@
         "Mediterranean",
         "Gaudi"
       ],
-      "description": "Gaudí's unfinished cathedral, Gothic Quarter labyrinth and Barceloneta seafood evenings."
+      "description": "Gaud\u00ed's unfinished cathedral, Gothic Quarter labyrinth and Barceloneta seafood evenings."
     },
     {
       "id": "city-004",
@@ -69,7 +69,7 @@
         "Norway",
         "Fjords"
       ],
-      "description": "Bryggen's painted warehouses, the Fløibanen funicular and fresh fish on the harbour quay."
+      "description": "Bryggen's painted warehouses, the Fl\u00f8ibanen funicular and fresh fish on the harbour quay."
     },
     {
       "id": "city-005",
@@ -223,7 +223,7 @@
         "Germany",
         "Financial Hub"
       ],
-      "description": "Medieval Römerberg, modern skyline and apple wine in a Sachsenhausen cider tavern."
+      "description": "Medieval R\u00f6merberg, modern skyline and apple wine in a Sachsenhausen cider tavern."
     },
     {
       "id": "city-014",
@@ -594,7 +594,7 @@
         "Sweden",
         "Nordic"
       ],
-      "description": "Gamla Stan medieval island, the Vasa warship museum and archipelago views from Djurgården."
+      "description": "Gamla Stan medieval island, the Vasa warship museum and archipelago views from Djurg\u00e5rden."
     },
     {
       "id": "city-035",
@@ -630,7 +630,7 @@
         "Classical Music",
         "Danube"
       ],
-      "description": "Schönbrunn Palace, coffeehouse culture and Strauss waltzes in a city frozen in imperial grandeur."
+      "description": "Sch\u00f6nbrunn Palace, coffeehouse culture and Strauss waltzes in a city frozen in imperial grandeur."
     },
     {
       "id": "city-037",
@@ -800,9 +800,9 @@
       "description": "Gothic Prague, imperial Vienna and thermal Budapest by train in six nights."
     },
     {
-      "id": "7-nights--8-days-france-privat",
-      "name": "7 nights, 8 days France Private",
-      "filename": "7 nights, 8 days France_Private.pdf",
+      "id": "7-nights--8-days-france-norman",
+      "name": "7 nights, 8 days France, Normandy, Loire & Valley",
+      "filename": "7 nights, 8 days France Normandy & Loire Valley_Private.pdf",
       "region": "France",
       "folder": "multi-country/france",
       "cities": [
@@ -812,17 +812,21 @@
       ],
       "duration": "7 nights / 8 days",
       "type": "Private",
+      "season": "all-year",
+      "price_twin": 1306,
+      "currency": "\u20ac",
+      "valid_till": "Oct 2026",
+      "description": "Private guided tour through Paris, Bayeux and Tours.",
       "tags": [
         "Paris",
-        "Normandy",
-        "Loire Valley"
-      ],
-      "description": "D-Day beaches, Mont Saint-Michel and Loire Valley châteaux on a private Normandy and Loire circuit."
+        "Bayeux",
+        "Tours"
+      ]
     },
     {
-      "id": "7-nights--8-days-france-regula",
-      "name": "7 nights, 8 days France Regular",
-      "filename": "7 nights, 8 days France_Regular.pdf",
+      "id": "7-nights--8-days-france-norman",
+      "name": "7 nights, 8 days France, Normandy, Loire & Valley",
+      "filename": "7 nights, 8 days France Normandy & Loire Valley_Regular.pdf",
       "region": "France",
       "folder": "multi-country/france",
       "cities": [
@@ -832,17 +836,21 @@
       ],
       "duration": "7 nights / 8 days",
       "type": "Regular",
+      "season": "all-year",
+      "price_twin": 1024,
+      "currency": "\u20ac",
+      "valid_till": "Oct 2026",
+      "description": "Trains, landmarks and local character through Paris, Bayeux and Tours.",
       "tags": [
         "Paris",
-        "Normandy",
-        "Loire Valley"
-      ],
-      "description": "D-Day beaches, Mont Saint-Michel and Loire Valley châteaux by train from Paris."
+        "Bayeux",
+        "Tours"
+      ]
     },
     {
-      "id": "7-nights--8-days-france-self-d",
-      "name": "7 nights, 8 days France Self-drive",
-      "filename": "7 nights, 8 days France_Self-drive.pdf",
+      "id": "7-nights--8-days-france-norman",
+      "name": "7 nights, 8 days France, Normandy, Loire & Valley",
+      "filename": "7 nights, 8 days France Normandy & Loire Valley_Self-drive.pdf",
       "region": "France",
       "folder": "multi-country/france",
       "cities": [
@@ -852,13 +860,16 @@
       ],
       "duration": "7 nights / 8 days",
       "type": "Self Drive",
+      "season": "all-year",
+      "price_twin": 1018,
+      "currency": "\u20ac",
+      "valid_till": "Oct 2026",
+      "description": "Self-drive through Paris, Bayeux and Tours \u2014 your route, your pace.",
       "tags": [
         "Paris",
-        "Normandy",
-        "Loire Valley",
-        "Self Drive"
-      ],
-      "description": "D-Day beaches, Étretat cliffs and Loire Valley châteaux on a self-drive from Paris."
+        "Bayeux",
+        "Tours"
+      ]
     },
     {
       "id": "8-nights--9-days-corsica-self-",
@@ -878,12 +889,12 @@
         "France",
         "Self Drive"
       ],
-      "description": "Corsica's dramatic interior — the Calanques de Piana, Spelunca gorge and the white limestone cliffs of Bonifacio."
+      "description": "Corsica's dramatic interior \u2014 the Calanques de Piana, Spelunca gorge and the white limestone cliffs of Bonifacio."
     },
     {
-      "id": "8-nights--9-days-france-privat",
-      "name": "8 nights, 9 days France Private",
-      "filename": "8 nights, 9 days France_Private.pdf",
+      "id": "8-nights--9-days-france-proven",
+      "name": "8 nights, 9 days France, Provence, French & Riviera",
+      "filename": "8 nights, 9 days France Provence & French Riviera_Private.pdf",
       "region": "France",
       "folder": "multi-country/france",
       "cities": [
@@ -894,17 +905,22 @@
       ],
       "duration": "8 nights / 9 days",
       "type": "Private",
+      "season": "all-year",
+      "price_twin": 1558,
+      "currency": "\u20ac",
+      "valid_till": "Nov 2026",
+      "description": "Private guided tour through Paris, Avignon, Aix en Provence and Nice.",
       "tags": [
         "Paris",
-        "Provence",
-        "French Riviera"
-      ],
-      "description": "Paris, papal Avignon, Luberon lavender villages and Monaco on a private Provence and Riviera circuit."
+        "Avignon",
+        "Aix en Provence",
+        "Nice"
+      ]
     },
     {
-      "id": "8-nights--9-days-france-regula",
-      "name": "8 nights, 9 days France Regular",
-      "filename": "8 nights, 9 days France_Regular.pdf",
+      "id": "8-nights--9-days-france-proven",
+      "name": "8 nights, 9 days France, Provence, French & Riviera",
+      "filename": "8 nights, 9 days France Provence & French Riviera_Regular.pdf",
       "region": "France",
       "folder": "multi-country/france",
       "cities": [
@@ -915,17 +931,22 @@
       ],
       "duration": "8 nights / 9 days",
       "type": "Regular",
+      "season": "all-year",
+      "price_twin": 1198,
+      "currency": "\u20ac",
+      "valid_till": "Nov 2026",
+      "description": "Trains, landmarks and local character through Paris, Avignon, Aix en Provence and Nice.",
       "tags": [
         "Paris",
-        "Provence",
-        "French Riviera"
-      ],
-      "description": "Paris to the Riviera — papal Avignon, Provence hilltowns and Monaco by train."
+        "Avignon",
+        "Aix en Provence",
+        "Nice"
+      ]
     },
     {
-      "id": "8-nights--9-days-france-self-d",
-      "name": "8 nights, 9 days France Self drive",
-      "filename": "8 nights, 9 days France_Self drive.pdf",
+      "id": "8-nights--9-days-france-proven",
+      "name": "8 nights, 9 days France, Provence, French & Riviera",
+      "filename": "8 nights, 9 days France Provence & French Riviera_Self drive.pdf",
       "region": "France",
       "folder": "multi-country/france",
       "cities": [
@@ -936,13 +957,39 @@
       ],
       "duration": "8 nights / 9 days",
       "type": "Self Drive",
+      "season": "all-year",
+      "price_twin": 1420,
+      "currency": "\u20ac",
+      "valid_till": "Nov 2026",
+      "description": "Self-drive through Paris, Avignon, Aix en Provence and Nice \u2014 your route, your pace.",
       "tags": [
         "Paris",
-        "Provence",
-        "Riviera",
-        "Self Drive"
+        "Avignon",
+        "Aix en Provence",
+        "Nice"
+      ]
+    },
+    {
+      "id": "5-nights--6-days-norway-in-a-n",
+      "name": "5 nights, 6 days Norway, In, a & Nutshell",
+      "filename": "5 nights, 6 days Norway In a Nutshell_Regular.pdf",
+      "region": "Scandinavia & Iceland",
+      "folder": "multi-country/scandinavia-iceland",
+      "cities": [
+        "Oslo",
+        "Bergen"
       ],
-      "description": "Paris to Nice by self-drive — Pont du Gard, Luberon villages, St Tropez and Monaco at your own pace."
+      "duration": "5 nights / 6 days",
+      "type": "Regular",
+      "season": "all-year",
+      "price_twin": 1080,
+      "currency": "\u20ac",
+      "valid_till": "Mar 2026",
+      "description": "From Oslo to Bergen \u2014 history, culture and local highlights.",
+      "tags": [
+        "Oslo",
+        "Bergen"
+      ]
     },
     {
       "id": "6-nights--7-days-nordic-capita",
@@ -965,12 +1012,12 @@
         "Helsinki",
         "Nordic"
       ],
-      "description": "Four Nordic capitals by ferry and train — design, open-faced sandwiches and the Vigeland sculpture park."
+      "description": "Four Nordic capitals by ferry and train \u2014 design, open-faced sandwiches and the Vigeland sculpture park."
     },
     {
-      "id": "iceland-self-drive-7-nights--8",
-      "name": "Iceland Self-drive 7 nights, 8 days",
-      "filename": "Iceland_Self-drive 7 nights, 8 days.pdf",
+      "id": "7-nights--8-days-iceland-self-",
+      "name": "7 nights, 8 days Iceland",
+      "filename": "7 nights, 8 days Iceland_Self-drive.pdf",
       "region": "Scandinavia & Iceland",
       "folder": "multi-country/scandinavia-iceland",
       "cities": [
@@ -981,12 +1028,17 @@
       ],
       "duration": "7 nights / 8 days",
       "type": "Self Drive",
+      "season": "all-year",
+      "price_twin": 1932,
+      "currency": "\u20ac",
+      "valid_till": "Oct 2026",
+      "description": "Self-drive through Reykjavik, Akureyri, Hofn and Vik \u2014 your route, your pace.",
       "tags": [
-        "Iceland",
-        "Self Drive",
-        "Ring Road"
-      ],
-      "description": "Iceland's complete ring road — geysers, glacier lagoons, black beaches and the midnight sun."
+        "Reykjavik",
+        "Akureyri",
+        "Hofn",
+        "Vik"
+      ]
     },
     {
       "id": "kiruna-4n-regular-winter",
@@ -1001,36 +1053,16 @@
       "type": "Regular",
       "season": "winter",
       "price_twin": 1351,
-      "currency": "€",
+      "currency": "\u20ac",
       "valid_till": "Mar 2027",
       "is_expired": false,
-      "description": "Dog sledding, the ICEHOTEL at Jukkasjärvi, a snowmobile wildlife safari and a Northern Lights chase in the deep Arctic.",
+      "description": "Dog sledding, the ICEHOTEL at Jukkasj\u00e4rvi, a snowmobile wildlife safari and a Northern Lights chase in the deep Arctic.",
       "tags": [
         "Kiruna",
         "Sweden",
         "Northern Lights",
         "Winter"
       ]
-    },
-    {
-      "id": "norway-nutshell-regular-5-nigh",
-      "name": "Norway Nutshell Regular 5 nights, 6 days",
-      "filename": "Norway Nutshell_Regular 5 nights, 6 days.pdf",
-      "region": "Scandinavia & Iceland",
-      "folder": "multi-country/scandinavia-iceland",
-      "cities": [
-        "Oslo",
-        "Bergen"
-      ],
-      "duration": "5 nights / 6 days",
-      "type": "Regular",
-      "tags": [
-        "Oslo",
-        "Bergen",
-        "Norway",
-        "Fjords"
-      ],
-      "description": "Oslo's fjord waterfront, the Flåm Railway and Bergen's colourful Bryggen wharf."
     },
     {
       "id": "rovaniemi-4n-regular-winter",
@@ -1045,7 +1077,7 @@
       "type": "Regular",
       "season": "winter",
       "price_twin": 1188,
-      "currency": "€",
+      "currency": "\u20ac",
       "valid_till": "Mar 2027",
       "is_expired": false,
       "description": "Reindeer farm safari, husky experience and a guaranteed Northern Lights excursion from Santa's Arctic hometown.",
@@ -1071,10 +1103,10 @@
       "type": "Regular",
       "season": "winter",
       "price_twin": 2087,
-      "currency": "€",
+      "currency": "\u20ac",
       "valid_till": "Mar 2027",
       "is_expired": false,
-      "description": "Four days in Kiruna — dog sleds, ICEHOTEL, snowmobiles — then three nights at Abisko's Aurora Sky Station.",
+      "description": "Four days in Kiruna \u2014 dog sleds, ICEHOTEL, snowmobiles \u2014 then three nights at Abisko's Aurora Sky Station.",
       "tags": [
         "Kiruna",
         "Abisko",
@@ -1085,23 +1117,23 @@
     },
     {
       "id": "tromso-4n-regular-winter",
-      "name": "Tromsø Winter 4 nights / 5 days",
+      "name": "Troms\u00f8 Winter 4 nights / 5 days",
       "filename": "Tromso 4N_Regular Winter.pdf",
       "region": "Scandinavia & Iceland",
       "folder": "multi-country/scandinavia-iceland",
       "cities": [
-        "Tromsø"
+        "Troms\u00f8"
       ],
       "duration": "4 nights / 5 days",
       "type": "Regular",
       "season": "winter",
       "price_twin": 1726,
-      "currency": "€",
+      "currency": "\u20ac",
       "valid_till": "Mar 2027",
       "is_expired": false,
-      "description": "Northern Lights cruise, Sámi reindeer camp dinner, Lyngen Alps snowmobile safari and a polar whale watching expedition.",
+      "description": "Northern Lights cruise, S\u00e1mi reindeer camp dinner, Lyngen Alps snowmobile safari and a polar whale watching expedition.",
       "tags": [
-        "Tromsø",
+        "Troms\u00f8",
         "Norway",
         "Northern Lights",
         "Winter",
@@ -1110,48 +1142,29 @@
     },
     {
       "id": "tromso-7n-regular-winter",
-      "name": "Tromsø Winter 7 nights / 8 days",
+      "name": "Troms\u00f8 Winter 7 nights / 8 days",
       "filename": "Tromso 7N_Regular Winter.pdf",
       "region": "Scandinavia & Iceland",
       "folder": "multi-country/scandinavia-iceland",
       "cities": [
-        "Tromsø"
+        "Troms\u00f8"
       ],
       "duration": "7 nights / 8 days",
       "type": "Regular",
       "season": "winter",
       "price_twin": 2599,
-      "currency": "€",
+      "currency": "\u20ac",
       "valid_till": "Mar 2027",
       "is_expired": false,
-      "description": "Seven nights of Arctic immersion — whale watching, snowmobiles, reindeer sledding, Aurora cruises and a coastal fjord safari.",
+      "description": "Seven nights of Arctic immersion \u2014 whale watching, snowmobiles, reindeer sledding, Aurora cruises and a coastal fjord safari.",
       "tags": [
-        "Tromsø",
+        "Troms\u00f8",
         "Norway",
         "Northern Lights",
         "Winter",
         "Whale Watching",
-        "Sámi Culture"
+        "S\u00e1mi Culture"
       ]
-    },
-    {
-      "id": "6-nights--7-days-madbcn-privat",
-      "name": "6 nights, 7 days Madrid Barcelona - Private",
-      "filename": "6 nights, 7 days MADBCN_Private.pdf",
-      "region": "Spain & Portugal",
-      "folder": "multi-country/spain-portugal",
-      "cities": [
-        "Madrid",
-        "Barcelona"
-      ],
-      "duration": "6 nights / 7 days",
-      "type": "Private",
-      "tags": [
-        "Madrid",
-        "Barcelona",
-        "Spain"
-      ],
-      "description": "Royal palaces, Sagrada Família and Montserrat on a private Madrid to Barcelona circuit."
     },
     {
       "id": "8-nights--9-days-spain-private",
@@ -1173,7 +1186,7 @@
         "Seville",
         "Barcelona"
       ],
-      "description": "Private guided Spain: Alhambra gardens, Seville flamenco, Toledo detour and Gaudí in Barcelona."
+      "description": "Private guided Spain: Alhambra gardens, Seville flamenco, Toledo detour and Gaud\u00ed in Barcelona."
     },
     {
       "id": "8-nights--9-days-spain-regular",
@@ -1195,7 +1208,7 @@
         "Seville",
         "Barcelona"
       ],
-      "description": "Alhambra gardens, Seville's Royal Alcázar and Gaudí's Barcelona by high-speed train."
+      "description": "Alhambra gardens, Seville's Royal Alc\u00e1zar and Gaud\u00ed's Barcelona by high-speed train."
     },
     {
       "id": "switz-001",
@@ -1259,7 +1272,7 @@
         "Jungfrau",
         "Lake Geneva"
       ],
-      "description": "Seven nights on the Swiss Travel Pass — Titlis, Jungfrau, Lake Geneva and Broc chocolate factory."
+      "description": "Seven nights on the Swiss Travel Pass \u2014 Titlis, Jungfrau, Lake Geneva and Broc chocolate factory."
     },
     {
       "id": "uk-002",
@@ -1299,7 +1312,7 @@
         "City Break",
         "Thames"
       ],
-      "description": "Private London — panoramic city tour, Thames cruise, Stonehenge and Bath with a dedicated vehicle."
+      "description": "Private London \u2014 panoramic city tour, Thames cruise, Stonehenge and Bath with a dedicated vehicle."
     },
     {
       "id": "uk-010",
@@ -1458,9 +1471,9 @@
       "description": "Private Britain: London, Peak District, Edinburgh, Isle of Skye and Loch Lomond with a dedicated vehicle."
     },
     {
-      "id": "9-nights--10-days-cotswolds-de",
-      "name": "9 nights, 10 days Cotswolds Devon Cornwall Self-drive",
-      "filename": "9 nights, 10 days Cotswolds Devon & Cornwall_Self-drive.pdf",
+      "id": "9-nights--10-days-london-with-",
+      "name": "9 nights, 10 days London, with, Devon & Cornwall",
+      "filename": "9 nights, 10 days London with Devon & Cornwall_Self-drive.pdf",
       "region": "UK & Ireland",
       "folder": "multi-country/uk-ireland",
       "cities": [
@@ -1473,14 +1486,19 @@
       ],
       "duration": "9 nights / 10 days",
       "type": "Self Drive",
+      "season": "all-year",
+      "price_twin": 1332,
+      "currency": "\u00a3",
+      "valid_till": "Oct 2026",
+      "description": "Self-drive through Cheltenham, Barnstaple, Truro, Plymouth, Exeter and Bournemouth \u2014 your route, your pace.",
       "tags": [
-        "England",
-        "Cotswolds",
-        "Cornwall",
-        "Devon",
-        "Self Drive"
-      ],
-      "description": "England's secret southwest — Tintagel, Land's End, the Jurassic Coast, Stonehenge and Windsor on one circuit."
+        "Cheltenham",
+        "Barnstaple",
+        "Truro",
+        "Plymouth",
+        "Exeter",
+        "Bournemouth"
+      ]
     },
     {
       "id": "wce-005",
@@ -1639,7 +1657,7 @@
         "Alps",
         "Danube"
       ],
-      "description": "Paris, Swiss Alps, Swarovski Crystal Worlds and Vienna's Schönbrunn on a private nine-night arc."
+      "description": "Paris, Swiss Alps, Swarovski Crystal Worlds and Vienna's Sch\u00f6nbrunn on a private nine-night arc."
     },
     {
       "id": "wce-004",
@@ -1662,7 +1680,7 @@
         "Alps",
         "Danube"
       ],
-      "description": "Paris to Vienna by rail — Titlis, Swarovski crystal worlds and a Schönbrunn Palace city tour."
+      "description": "Paris to Vienna by rail \u2014 Titlis, Swarovski crystal worlds and a Sch\u00f6nbrunn Palace city tour."
     }
   ]
 }
