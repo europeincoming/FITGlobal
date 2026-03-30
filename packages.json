@@ -977,42 +977,6 @@
       ]
     },
     {
-      "id": "4-nights--5-days-tromso-regula",
-      "name": "4 nights, 5 days Tromso",
-      "filename": "4 Nights, 5 Days Tromso_Regular.pdf",
-      "region": "Scandinavia & Iceland",
-      "folder": "multi-country/scandinavia-iceland",
-      "cities": [],
-      "duration": "4 nights / 5 days",
-      "type": "Regular",
-      "season": "all-year",
-      "price_twin": 2383,
-      "currency": "\u20ac",
-      "valid_till": "Sep 2026",
-      "description": "Handpicked Scandinavia & Iceland itinerary with accommodation and transfers.",
-      "tags": []
-    },
-    {
-      "id": "4-nights--8-days-kiruna-regula",
-      "name": "4 nights, 8 days Kiruna",
-      "filename": "4 Nights, 8 Days Kiruna_Regular.pdf",
-      "region": "Scandinavia & Iceland",
-      "folder": "multi-country/scandinavia-iceland",
-      "cities": [
-        "Kiruna"
-      ],
-      "duration": "4 nights / 8 days",
-      "type": "Regular",
-      "season": "all-year",
-      "price_twin": 1391,
-      "currency": "\u20ac",
-      "valid_till": "Sep 2026",
-      "description": "Two nights in Kiruna with sightseeing, canal cruise and transfers.",
-      "tags": [
-        "Kiruna"
-      ]
-    },
-    {
       "id": "5-nights--6-days-norway-in-a-n",
       "name": "5 nights, 6 days Norway, In, a & Nutshell",
       "filename": "5 nights, 6 days Norway In a Nutshell_Regular.pdf",
@@ -1059,44 +1023,6 @@
         "Stockholm",
         "Helsinki"
       ]
-    },
-    {
-      "id": "7-nights--8-days-swedish-lapla",
-      "name": "7 nights, 8 days Swedish & Lapland",
-      "filename": "7 Nights, 8 Days Swedish Lapland_Regular.pdf",
-      "region": "Scandinavia & Iceland",
-      "folder": "multi-country/scandinavia-iceland",
-      "cities": [
-        "Kiruna",
-        "Abisko"
-      ],
-      "duration": "7 nights / 8 days",
-      "type": "Regular",
-      "season": "all-year",
-      "price_twin": 2238,
-      "currency": "\u20ac",
-      "valid_till": "Sep 2026",
-      "description": "From Kiruna to Abisko \u2014 history, culture and local highlights.",
-      "tags": [
-        "Kiruna",
-        "Abisko"
-      ]
-    },
-    {
-      "id": "7-nights--8-days-tromso-regula",
-      "name": "7 nights, 8 days Tromso",
-      "filename": "7 Nights, 8 Days Tromso_Regular.pdf",
-      "region": "Scandinavia & Iceland",
-      "folder": "multi-country/scandinavia-iceland",
-      "cities": [],
-      "duration": "7 nights / 8 days",
-      "type": "Regular",
-      "season": "all-year",
-      "price_twin": 3210,
-      "currency": "\u20ac",
-      "valid_till": "Sep 2026",
-      "description": "Handpicked Scandinavia & Iceland itinerary with accommodation and transfers.",
-      "tags": []
     },
     {
       "id": "7-nights--8-days-iceland-self-",
