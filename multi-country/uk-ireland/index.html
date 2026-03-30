@@ -46,7 +46,6 @@ footer{text-align:center;margin-top:60px;padding:32px 0;color:#9e9e9e;font-size:
 .card-description{font-size:0.81em;color:#666;font-style:italic;line-height:1.4;}
 .cities-list{font-size:0.79em;color:#555;}
 .price-tag{font-size:0.88em;color:#2e7d32;font-weight:700;margin-top:auto;padding-top:6px;}
-
 .card-map{width:200px;min-width:200px;border-left:1px solid #ebebeb;position:relative;overflow:hidden;}
 .map-inner{width:100%;height:100%;min-height:210px;}
 .leaflet-tooltip.city-tip{background:transparent!important;border:none!important;box-shadow:none!important;font-size:9px;font-weight:700;color:#1a1a2e;white-space:nowrap;padding:0;text-shadow:-1px -1px 0 white,1px -1px 0 white,-1px 1px 0 white,1px 1px 0 white;}
@@ -77,7 +76,7 @@ if(!['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div sty
 <div class="brochures" id="brochuresList">
 <a href="10 Nights 11 Days England-Scotland_ Regular.pdf" class="brochure-card" target="_blank">
   <div class="card-info">
-    <div class="card-title">10 nights, 11 days England-Scotland</div>
+    <div class="card-title">11 days England-Scotland</div>
     <div class="tour-type">Regular</div>
     <div class="card-pills"><span class="pill pill-duration">🕐 10 nights / 11 days</span><span class="pill pill-allyear">🌍 All Year Round</span><span class="pill pill-valid">✓ Valid till Nov 2026</span></div>
     <div class="card-description">London to Glasgow via the Peak District, Edinburgh's old town, Loch Ness and the Isle of Skye.</div>
@@ -88,7 +87,7 @@ if(!['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div sty
 </a>
 <a href="3 nights 4 days London_Private.pdf" class="brochure-card" target="_blank">
   <div class="card-info">
-    <div class="card-title">3 nights, 4 days London</div>
+    <div class="card-title">4 days London</div>
     <div class="tour-type">Private</div>
     <div class="card-pills"><span class="pill pill-duration">🕐 3 nights / 4 days</span><span class="pill pill-allyear">🌍 All Year Round</span><span class="pill pill-valid">✓ Valid till Oct 2026</span></div>
     <div class="card-description">Private London — panoramic city tour, Thames cruise, Stonehenge and Bath with a dedicated vehicle.</div>
@@ -165,7 +164,7 @@ if(!['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div sty
 </a>
 <a href="8 Nights 9 Days London Scotland_Regular.pdf" class="brochure-card" target="_blank">
   <div class="card-info">
-    <div class="card-title">8 nights, 9 days London & Scotland</div>
+    <div class="card-title">9 days London & Scotland</div>
     <div class="tour-type">Regular</div>
     <div class="card-pills"><span class="pill pill-duration">🕐 8 nights / 9 days</span><span class="pill pill-allyear">🌍 All Year Round</span><span class="pill pill-valid">✓ Valid till Nov 2026</span></div>
     <div class="card-description">London to Edinburgh by train via Glasgow, Loch Ness and the Highlands.</div>
@@ -176,7 +175,7 @@ if(!['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div sty
 </a>
 <a href="9 Nights 10 Days England-Scotland_ Private.pdf" class="brochure-card" target="_blank">
   <div class="card-info">
-    <div class="card-title">9 nights, 10 days England-Scotland</div>
+    <div class="card-title">10 days England-Scotland</div>
     <div class="tour-type">Private</div>
     <div class="card-pills"><span class="pill pill-duration">🕐 9 nights / 10 days</span><span class="pill pill-allyear">🌍 All Year Round</span><span class="pill pill-valid">✓ Valid till Nov 2026</span></div>
     <div class="card-description">Private Britain: London, Peak District, Edinburgh, Isle of Skye and Loch Lomond with a dedicated vehicle.</div>
@@ -361,7 +360,7 @@ if(!['US','CA','AU','NZ'].includes(d.country)){document.body.innerHTML='<div sty
   });
 })();
 (function(){
-  var pts=[[51.8995685, -2.0711559, "Cheltenham"], [51.0809012, -4.0605978, "Barnstaple"], [50.2633354, -5.0510781, "Truro"], [50.3714122, -4.1424451, "Plymouth"], [50.7256138, -3.5269209, "Exeter"], [50.7201514, -1.8799118, "Bournemouth"]];
+  var pts=[[51.8994, -2.0783, "Cheltenham"], [51.0803, -4.0588, "Barnstaple"], [50.2632, -5.051, "Truro"], [50.3755, -4.1427, "Plymouth"], [50.7184, -3.5339, "Exeter"], [50.7192, -1.8808, "Bournemouth"]];
   if(!pts.length) return;
   var lats=pts.map(function(p){return p[0];});
   var lngs=pts.map(function(p){return p[1];});
